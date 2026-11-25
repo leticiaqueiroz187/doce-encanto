@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Doce Encanto | Pagamento</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="site-header" id="header">
+  <div class="header-inner">
+    <a href="index.html" class="logo" aria-label="Doce Encanto, página inicial">
+      <span class="logo-icon" aria-hidden="true"><svg viewBox="0 0 40 40" width="34" height="34" fill="none">
+          <path d="M20 6c-5.5 0-8.5 4.2-8.5 8 0 1.8.8 3 1.8 3.8C10.2 19 8 21.6 8 25c0 4.6 4.8 7.5 12 7.5s12-2.9 12-7.5c0-3.4-2.2-6-5.3-7.2 1-.8 1.8-2 1.8-3.8 0-3.8-3-8-8.5-8z" fill="currentColor"/>
+          <path d="M13 24.5c2.2 1.4 4.6 1.4 7 0s4.8-1.4 7 0" stroke="#FFF9F5" stroke-width="2" stroke-linecap="round"/>
+        </svg></span>
+      <span class="logo-text">Doce Encanto</span>
+    </a>
+
+    <nav class="main-nav" id="mainNav" aria-label="Navegação principal">
+      <a href="index.html#topo" class="nav-link">Início</a>
+      <a href="index.html#cardapio" class="nav-link">Cardápio</a>
+      <a href="index.html#sobre" class="nav-link">Sobre</a>
+      <a href="index.html#contato" class="nav-link">Contato</a>
+      <a href="Carrinho.html" class="nav-link">Carrinho</a>
+    </nav>
+
+    <div class="header-actions">
+      <a class="icon-btn cart-btn" id="cartBtn" href="Carrinho.html" aria-label="Ir para o carrinho de compras">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="9" cy="21" r="1.4"></circle>
+          <circle cx="18" cy="21" r="1.4"></circle>
+          <path d="M2.5 3h2.4l2.2 12.2a2 2 0 0 0 2 1.6h8.3a2 2 0 0 0 2-1.6L21.5 7H6"></path>
+        </svg>
+        <span class="cart-count" id="cart-count">0</span>
+      </a>
+      <button class="icon-btn menu-toggle" id="menuToggle" type="button" aria-label="Abrir menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="steps" aria-label="Etapas do pedido">
+  <div class="step">
+    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+    <span>Carrinho</span>
+  </div>
+  <div class="step">
+    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+    <span>Dados</span>
+  </div>
+  <div class="step is-active">
+    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+    <span>Pagamento</span>
+  </div>
+</div>
+
+<main class="page-main">
+  <h1>Escolha a forma de pagamento</h1>
+  <p class="hint">Total do pedido: <strong id="pay-total">R$ 0,00</strong></p>
+
+  <div id="cliente-resumo" class="card" style="margin:1rem 0;">Carregando dados do cliente...</div>
+
+  <div id="print-resumo" class="print-only" style="margin:10px 0; padding:12px; border:1px solid #ccc; background:#fff;">
+    <h2>Resumo do Pedido — Doce Encanto</h2>
+    <div id="print-cliente"></div>
+    <div id="print-carrinho" style="margin-top:8px;"></div>
+  </div>
+
+  <div class="pay-grid">
+    <section class="pay-card">
+      <h2>Pix</h2>
+      <p>Use a chave Pix abaixo ou gere o código copia e cola. Após o pagamento, envie o comprovante pelo WhatsApp.</p>
+      <p><strong>Chave Pix:</strong> <span id="pix-key">91982527889</span></p>
+      <div class="inline">
+        <button id="gen-pix" class="btn btn-add" type="button">Gerar Pix (copia e cola)</button>
+        <button id="copy-pix" class="btn-small" type="button">Copiar código</button>
+      </div>
+      <pre id="pix-code" class="code" aria-live="polite" style="margin-top:10px; display:none;"></pre>
+      <img id="pix-qr-image" alt="QR code Pix" style="display:none;">
+      <p id="pix-qr-fallback" class="hint" style="display:none; margin-top:8px;">Sem conexão para carregar a imagem do QR Code — use o código copia e cola acima.</p>
+      <p class="hint" style="margin-top:8px">Escaneie o QR code ou copie o código Pix acima no app do seu banco.</p>
+    </section>
+
+    <section class="pay-card">
+      <h2>Boleto</h2>
+      <p>Gere o boleto e realize o pagamento até a data de vencimento.</p>
+      <div class="inline">
+        <button id="gen-boleto" class="btn btn-add" type="button">Gerar boleto</button>
+        <button id="copy-boleto" class="btn-small" type="button">Copiar linha digitável</button>
+      </div>
+      <p style="margin-top:10px;"><strong>Vencimento:</strong> <span id="boleto-due">—</span></p>
+      <p><strong>Linha digitável:</strong></p>
+      <pre id="boleto-line" class="code" aria-live="polite"></pre>
+      <p style="margin-top:8px">
+        <button class="btn-small no-print" type="button" onclick="window.print()">Imprimir boleto</button>
+      </p>
+    </section>
+  </div>
+
+  <div class="form-actions no-print">
+    <a href="Dados.html" class="btn btn-ghost">Voltar aos dados</a>
+    <button id="finish-order" class="btn btn-primary" type="button">Confirmar Pedido</button>
+  </div>
+</main>
+
+<footer class="site-footer" id="contato">
+  <div class="footer-inner">
+    <div class="footer-col footer-brand">
+      <a href="index.html" class="logo logo-footer">
+        <span class="logo-icon" aria-hidden="true"><svg viewBox="0 0 40 40" width="30" height="30" fill="none">
+            <path d="M20 6c-5.5 0-8.5 4.2-8.5 8 0 1.8.8 3 1.8 3.8C10.2 19 8 21.6 8 25c0 4.6 4.8 7.5 12 7.5s12-2.9 12-7.5c0-3.4-2.2-6-5.3-7.2 1-.8 1.8-2 1.8-3.8 0-3.8-3-8-8.5-8z" fill="currentColor"/>
+            <path d="M13 24.5c2.2 1.4 4.6 1.4 7 0s4.8-1.4 7 0" stroke="#3B2A32" stroke-width="2" stroke-linecap="round"/>
+          </svg></span>
+        <span class="logo-text">Doce Encanto</span>
+      </a>
+      <p>Bolos, massas e salgados artesanais feitos para adoçar o seu dia.</p>
+    </div>
+
+    <div class="footer-col">
+      <h4>Contato</h4>
+      <ul>
+        <li>
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          (91) 9 9123-4567
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+          contato@doceencanto.com.br
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21c-4.5-3.5-8-6.9-8-11a8 8 0 0 1 16 0c0 4.1-3.5 7.5-8 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
+          Ananindeua, PA
+        </li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Horário</h4>
+      <ul class="plain">
+        <li>Terça a sábado: 9h às 19h</li>
+        <li>Domingo: 9h às 13h</li>
+        <li>Segunda: fechado</li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Redes sociais</h4>
+      <div class="social-row">
+        <a href="#contato" class="social-btn" aria-label="Instagram da Doce Encanto">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        </a>
+        <a href="#contato" class="social-btn" aria-label="WhatsApp da Doce Encanto">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+        </a>
+        <a href="#contato" class="social-btn" aria-label="Facebook da Doce Encanto">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>© <span id="year"></span> Doce Encanto. Todos os direitos reservados.</p>
+    <p class="footer-signature">feito com <span aria-hidden="true">♥</span> e muito açúcar</p>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+<script>
+  (function () {
+    const cart = getCart();
+    if (!cart.length) {
+      alert('Seu carrinho está vazio.');
+      window.location.href = 'index.html#cardapio';
+      return;
+    }
+
+    const cli = getCliente();
+    const resumo = document.getElementById('cliente-resumo');
+    if (!cli) {
+      resumo.innerHTML = 'Nenhum dado encontrado. <a href="Dados.html" style="color:var(--rose-700); font-weight:700;">Preencha seus dados</a> antes do pagamento.';
+      alert('Preencha seus dados antes do pagamento.');
+      window.location.href = 'Dados.html';
+      return;
+    }
+
+    resumo.innerHTML = `<strong>Cliente:</strong> ${cli.nome} — ${cli.tel}<br>` +
+      `${cli.endereco}, ${cli.numero} ${cli.complemento ? ('- ' + cli.complemento) : ''} — ${cli.bairro}<br>` +
+      `${cli.cidade}/${cli.estado} — CEP: ${cli.cep}<br>` +
+      `<a href="Dados.html" style="color:var(--rose-700); font-weight:700;">Editar dados</a>`;
+
+    const total = cart.reduce((acc, p) => acc + (p.preco || 0) * (p.qtd || 1), 0);
+    document.getElementById('pay-total').textContent = money(total);
+
+    const PIX_NOME_RECEBEDOR = 'Leticia de Aguiar Queiroz';
+    const PIX_CIDADE = 'ANANINDEUA';
+
+    const genPixBtn = document.getElementById('gen-pix');
+    const copyPixBtn = document.getElementById('copy-pix');
+    const pixCodeEl = document.getElementById('pix-code');
+    const pixKey = document.getElementById('pix-key').textContent.trim();
+    const pixImg = document.getElementById('pix-qr-image');
+    const pixFallback = document.getElementById('pix-qr-fallback');
+
+    function tlv(id, value) {
+      const len = String(value.length).padStart(2, '0');
+      return `${id}${len}${value}`;
+    }
+
+    function semAcento(str) {
+      return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toUpperCase();
+    }
+
+    function crc16(payload) {
+      let crc = 0xFFFF;
+      for (let i = 0; i < payload.length; i++) {
+        crc ^= (payload.charCodeAt(i) << 8);
+        for (let j = 0; j < 8; j++) {
+          crc = (crc & 0x8000) ? ((crc << 1) ^ 0x1021) & 0xFFFF : (crc << 1) & 0xFFFF;
+        }
+      }
+      return crc.toString(16).toUpperCase().padStart(4, '0');
+    }
+
+    function generatePixPayload(value, key) {
+      const merchantAccount = tlv('00', 'br.gov.bcb.pix') + tlv('01', key);
+      const txid = ('DOCE' + Date.now().toString(36)).toUpperCase().slice(0, 25);
+
+      const payload =
+        tlv('00', '01') +
+        tlv('26', merchantAccount) +
+        tlv('52', '0000') +
+        tlv('53', '986') +
+        tlv('54', value.toFixed(2)) +
+        tlv('58', 'BR') +
+        tlv('59', semAcento(PIX_NOME_RECEBEDOR).slice(0, 25)) +
+        tlv('60', semAcento(PIX_CIDADE).slice(0, 15)) +
+        tlv('62', tlv('05', txid)) +
+        '6304';
+
+      return payload + crc16(payload);
+    }
+
+    pixImg.addEventListener('error', () => {
+      pixImg.style.display = 'none';
+      pixFallback.style.display = 'block';
+    });
+
+    genPixBtn.addEventListener('click', () => {
+      if (!pixKey) {
+        alert('Cadastre sua chave Pix antes de gerar.');
+        return;
+      }
+      const code = generatePixPayload(total, pixKey);
+      pixCodeEl.textContent = code;
+      pixCodeEl.style.display = 'block';
+      pixFallback.style.display = 'none';
+      pixImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=320x320&data=${encodeURIComponent(code)}`;
+      pixImg.style.display = 'block';
+    });
+
+    copyPixBtn.addEventListener('click', async () => {
+      if (!pixCodeEl.textContent) {
+        alert('Gere o código Pix primeiro.');
+        return;
+      }
+      try {
+        await navigator.clipboard.writeText(pixCodeEl.textContent);
+        alert('Código Pix copiado!');
+      } catch (e) {
+        alert('Não foi possível copiar automaticamente. Selecione e copie o texto.');
+      }
+    });
+
+    const genBoletoBtn = document.getElementById('gen-boleto');
+    const copyBoletoBtn = document.getElementById('copy-boleto');
+    const boletoLineEl = document.getElementById('boleto-line');
+    const boletoDueEl = document.getElementById('boleto-due');
+
+    function generateBoletoLine(value) {
+      const due = new Date();
+      due.setDate(due.getDate() + 3);
+      const dueStr = due.toLocaleDateString('pt-BR');
+      const rand = () => Math.floor(Math.random() * 90000000 + 10000000);
+      const linha = `23793.${rand()} ${rand()}.${rand()} ${rand()}.${rand()} 9 ${String(Math.round(value * 100)).padStart(10, '0')}`;
+      return { linha, dueStr };
+    }
+
+    genBoletoBtn.addEventListener('click', () => {
+      const { linha, dueStr } = generateBoletoLine(total);
+      boletoLineEl.textContent = linha;
+      boletoDueEl.textContent = dueStr;
+    });
+
+    copyBoletoBtn.addEventListener('click', async () => {
+      if (!boletoLineEl.textContent) {
+        alert('Gere o boleto primeiro.');
+        return;
+      }
+      try {
+        await navigator.clipboard.writeText(boletoLineEl.textContent);
+        alert('Linha digitável copiada!');
+      } catch (e) {
+        alert('Não foi possível copiar automaticamente. Selecione e copie o texto.');
+      }
+    });
+
+    document.getElementById('finish-order').addEventListener('click', () => {
+      alert('Pedido confirmado! Obrigado por comprar na Doce Encanto.');
+      setCart([]);
+      clearCliente();
+      window.location.href = 'index.html';
+    });
+
+    const pc = document.getElementById('print-cliente');
+    const pi = document.getElementById('print-carrinho');
+    if (cli && pc) {
+      pc.innerHTML = `<strong>Cliente:</strong> ${cli.nome} — ${cli.tel}<br>` +
+        `${cli.endereco}, ${cli.numero} ${cli.complemento ? ('- ' + cli.complemento) : ''} — ${cli.bairro}<br>` +
+        `${cli.cidade}/${cli.estado} — CEP: ${cli.cep}`;
+    }
+    if (pi && cart.length) {
+      let html = '<table style="width:100%; border-collapse:collapse" border="1"><tr><th style="text-align:left;padding:6px;">Item</th><th style="text-align:right;padding:6px;">Preço</th><th style="text-align:right;padding:6px;">Qtd</th><th style="text-align:right;padding:6px;">Subtotal</th></tr>';
+      cart.forEach(p => {
+        const sub = (p.preco || 0) * (p.qtd || 1);
+        html += `<tr><td style="padding:6px;">${p.nome}</td><td style="text-align:right;padding:6px;">${money(p.preco)}</td><td style="text-align:right;padding:6px;">${p.qtd || 1}</td><td style="text-align:right;padding:6px;">${money(sub)}</td></tr>`;
+      });
+      html += `<tr><td colspan="3" style="text-align:right;padding:6px;"><strong>Total</strong></td><td style="text-align:right;padding:6px;"><strong>${money(total)}</strong></td></tr>`;
+      html += '</table>';
+      pi.innerHTML = html;
+    }
+  })();
+</script>
+</body>
+</html>
